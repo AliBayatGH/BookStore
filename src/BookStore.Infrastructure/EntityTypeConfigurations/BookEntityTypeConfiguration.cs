@@ -11,7 +11,7 @@ public class BookEntityTypeConfiguration : IEntityTypeConfiguration<Book>
 
         builder.HasKey(b => b.Id);
 
-        builder.Property(b => b.Ttitle)
+        builder.Property(b => b.Title)
             .HasMaxLength(100)
             .IsRequired();
 

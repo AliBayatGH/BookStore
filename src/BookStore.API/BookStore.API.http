@@ -1,6 +1,35 @@
-@BookStore.API_HostAddress = http://localhost:5080
+@BookStore.API_HostAddress = https://localhost:7161
 
-GET {{BookStore.API_HostAddress}}/weatherforecast/
-Accept: application/json
+GET {{BookStore.API_HostAddress}}/api/books
+
+###
+
+POST {{BookStore.API_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "title": "C# in a Nutshell",
+  "author": "Joseph Albahari",
+  "price": 100
+}
+
+###
+
+DELETE {{BookStore.API_HostAddress}}/api/books?id=0
+
+###
+
+GET {{BookStore.API_HostAddress}}/api/books/0
+
+###
+
+PUT {{BookStore.API_HostAddress}}/api/books/0
+Content-Type: application/json
+
+{
+  "title": "C# in a Nutshell",
+  "author": "Joseph Albahari",
+  "price": 200
+}
 
 ###

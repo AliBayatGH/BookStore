@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 namespace BookStore.Infrastructure;
 public class ApplicationDbContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        
+
     }
 
     public DbSet<Book> Books { get; set; }

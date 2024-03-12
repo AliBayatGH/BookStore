@@ -42,7 +42,7 @@
 dotnet new sln -n BookStore
 
 # Create projects within the solution
-dotnet new webapi -n BookStore.API -o src/BookStore.API
+dotnet new webapi -n BookStore.API  -controllers -o src/BookStore.API
 dotnet new classlib -n BookStore.Domain -o src/BookStore.Domain
 dotnet new classlib -n BookStore.Infrastructure -o src/BookStore.Infrastructure
 dotnet new xunit -n BookStore.Tests -o tests/BookStore.Tests

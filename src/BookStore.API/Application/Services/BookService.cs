@@ -19,7 +19,7 @@ public class BookService : IBookService
     {
         var book = new Book()
         {
-            Ttitle = bookDto.Title,
+            Title = bookDto.Title,
             Author = bookDto.Author,
             Price = bookDto.Price,
         };
@@ -46,7 +46,7 @@ public class BookService : IBookService
         var books = await _bookRepository.GetAllBooksAsync();
         var bookDtos = books.Select(b => new BookDto
         {
-            Title = b.Ttitle,
+            Title = b.Title,
             Author = b.Author,
             Price = b.Price,
         });
@@ -65,7 +65,7 @@ public class BookService : IBookService
 
         return new BookDto
         {
-            Title = book.Ttitle,
+            Title = book.Title,
             Author = book.Author,
             Price = book.Price
         };
@@ -78,7 +78,7 @@ public class BookService : IBookService
         if (book == null)
             throw new Exception($"Book with id {id} is not found!");
 
-        book.Ttitle = bookDto.Title;
+        book.Title = bookDto.Title;
         book.Author = bookDto.Author;
         book.Price = bookDto.Price;
 

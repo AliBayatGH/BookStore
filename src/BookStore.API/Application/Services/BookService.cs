@@ -4,16 +4,10 @@ using BookStore.Domain.SeedWork;
 
 namespace BookStore.API.Application.Services;
 
-public class BookService : IBookService
+public class BookService(IBookRepository bookRepository, IUnitOfWork unitOfWork) : IBookService
 {
-    private readonly IBookRepository _bookRepository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public BookService(IBookRepository bookRepository, IUnitOfWork unitOfWork)
-    {
-        _bookRepository = bookRepository;
-        _unitOfWork = unitOfWork;
-    }
+    private readonly IBookRepository _bookRepository = bookRepository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<int> AddBookAsync(BookDto bookDto, CancellationToken cancellationToken = default)
     {
@@ -32,11 +26,7 @@ public class BookService : IBookService
 
     public async Task DeleteBookAsync(int id, CancellationToken cancellationToken = default)
     {
-        var book = await _bookRepository.GetBookAsync(id);
-
-        if (book == null)
-            throw new Exception($"Book with id {id} not found!");
-
+        var book = await _bookRepository.GetBookAsync(id) ?? throw new Exception($"Book with id {id} not found!");
         _bookRepository.Remove(book);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
@@ -73,11 +63,7 @@ public class BookService : IBookService
 
     public async Task UpdateBookAsync(int id, BookDto bookDto, CancellationToken cancellationToken = default)
     {
-        var book = await _bookRepository.GetBookAsync(id);
-
-        if (book == null)
-            throw new Exception($"Book with id {id} is not found!");
-
+        var book = await _bookRepository.GetBookAsync(id) ?? throw new Exception($"Book with id {id} is not found!");
         book.Title = bookDto.Title;
         book.Author = bookDto.Author;
         book.Price = bookDto.Price;

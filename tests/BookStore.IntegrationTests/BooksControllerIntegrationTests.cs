@@ -1,17 +1,13 @@
+using BookStore.API;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 using System.Text.Json;
 
-namespace BookStore.Tests;
+namespace BookStore.IntegrationTests;
 
-public class BooksControllerIntegrationTests : IClassFixture<WebApplicationFactory<AssemblyMarker>>
+public class BooksControllerIntegrationTests(WebApplicationFactory<IAssemblyMarker> factory) : IClassFixture<WebApplicationFactory<IAssemblyMarker>>
 {
-    private readonly WebApplicationFactory<AssemblyMarker> _factory;
-
-    public BooksControllerIntegrationTests(WebApplicationFactory<AssemblyMarker> factory)
-    {
-        _factory = factory;
-    }
+    private readonly WebApplicationFactory<IAssemblyMarker> _factory = factory;
 
     [Fact]
     public async Task GetBooks_ReturnsSuccessStatusCode()
@@ -32,7 +28,7 @@ public class BooksControllerIntegrationTests : IClassFixture<WebApplicationFacto
     {
         // Arrange
         var client = _factory.CreateClient();
-        var existingId = 1; 
+        var existingId = 1;
 
         // Act
         var response = await client.GetAsync($"/api/books/{existingId}");

@@ -1,4 +1,6 @@
-﻿public interface AssemblyMarker
+﻿namespace BookStore.API;
+
+public interface IAssemblyMarker
 {
 
 }

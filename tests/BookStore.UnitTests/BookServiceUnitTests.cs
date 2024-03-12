@@ -4,7 +4,7 @@ using BookStore.Domain.AggregatesModel.Books;
 using BookStore.Domain.SeedWork;
 using Moq;
 
-namespace BookStore.Tests;
+namespace BookStore.UnitTests;
 
 public class BookServiceUnitTests
 {
@@ -68,8 +68,8 @@ public class BookServiceUnitTests
 
         var books = new List<Book>
             {
-                new Book { Title = "Book 1", Author = "Author 1", Price = 10.99m },
-                new Book { Title = "Book 2", Author = "Author 2", Price = 12.99m }
+                new() { Title = "Book 1", Author = "Author 1", Price = 10.99m },
+                new() { Title = "Book 2", Author = "Author 2", Price = 12.99m }
             };
         var expectedBookDtos = books.Select(b => new BookDto { Title = b.Title, Author = b.Author, Price = b.Price });
 
